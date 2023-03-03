@@ -1,0 +1,124 @@
+/**
+  This is an assignment that requires us to ask a the user to search for names in a array. 
+  Search using both Linear and Binary Search. 
+  Print final exam takers array and the original updated array. 
+ 
+  @author Patrick Zhou
+  @version 1.0.0
+  @since 2023-1-19
+ */
+
+// imports necessary
+import java.io.File;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void prtArray(ArrayList<String> arr) {
+        // Printing the array that was passed. 
+        for (String s : arr) {
+            System.out.println(s);
+        }
+    }
+    /**
+    Implements binary search for a target on a ArrayList of names
+    @param target target value to search for
+    @param arr ArrayList of names
+    @param finalTakers ArrayList of final exam takers
+    @return (int) The index of the target found in arr
+    */
+    public static int binarySearch(String target, ArrayList<String> arr, ArrayList<String> finalTakers) {
+        // initialize and declare the start middle and end variables
+        int st=0, end=arr.size()-1, mid=(st+end)/2, iterationcount=0;
+        // while loop to make sure start is less than end (exists). 
+        while (st<=end) {
+            // increment number of times searched
+            iterationcount++;
+            // set middle value for each iteration
+            mid = (st+end)/2;
+            // move the bounds accordingly with compareto if statements.
+            if (target.compareTo(arr.get(mid))<0) {
+                end=mid-1;
+            } else if (target.compareTo(arr.get(mid))>0) {
+                st=mid+1;
+            } else if (target.compareTo(arr.get(mid))==0) {
+                // add element to final exam takers array
+                finalTakers.add(arr.get(mid));
+                // remove found if it is found with binary search. 
+                arr.remove(mid);
+                break;
+            }
+        }      
+        // return final amount of times iterated. 
+        return iterationcount;
+    }
+    /**
+    Implements linear search for a target on a ArrayList of names
+    @param target target value to search for
+    @param arr ArrayList of original names
+    @param finalTakers ArrayList of final exam takers
+    @return (int) The index of the target found in arr
+    */
+    public static int linearSearch(String target, ArrayList<String> arr, ArrayList<String> finalTakers) {
+        // initialize for loop increment variable
+        int i;
+        // for loop to traverse through ArrayList of names
+        for (i = 0; i < arr.size(); i++) {
+            // check if the current element is equal to the target if so, return the index
+            if (arr.get(i).equals(target)) {
+                return i+1;
+            }
+        }
+        // if the target is not found, return i
+        return i+1;
+    }
+    /**
+    Implements binary search for a target on a ArrayList of names
+    @param (String[] args) default for main
+    @return Nothing (void)
+    */    
+    public static void main(String[] args) throws FileNotFoundException {
+        // initialize ArrayList, students.txt file and Scanner to input ArrayList and to take user input, target string.  
+        ArrayList<String> arr = new ArrayList<String>(), finalTakers = new ArrayList<String>();
+        File students = new File("students.txt");
+        Scanner studentInput = new Scanner(students), in = new Scanner(System.in);
+        String target;
+        // while loop to input file contents into arraylist
+        while (studentInput.hasNext()) {
+            arr.add(studentInput.next());
+        }
+        // closing scanner for good practice. 
+        studentInput.close();
+        // printing the original array
+        System.out.println("This is original array: ");
+        // calling the prtArray method for the original array
+        prtArray(arr);
+        // linebreak
+        System.out.println();
+        // while loop to input students. 
+        while (true) {
+            System.out.print("Which student do you want to search for? (Type in 'no' to stop) ");
+            target = in.next();
+            if (target.equals("no")) {
+                break;
+            } else {
+                System.out.println("Linear Search: "+linearSearch(target, arr, finalTakers)+", Binary Search: "+binarySearch(target, arr, finalTakers));
+            }
+        }
+        // closing scanner for good practice. 
+        in.close();
+        // linebreak
+        System.out.println();
+        // labeling print array
+        System.out.println("This is the original ArrayList after the remove operations: ");
+        // calling the prtArray method for the original array. 
+        prtArray(arr);
+        // linebreak
+        System.out.println();
+        // labeling the print array. 
+        System.out.println("This is the ArrayList of final exam takers: ");
+        // calling the prtArray method for the final exam takers. 
+        prtArray(finalTakers);
+    }
+}

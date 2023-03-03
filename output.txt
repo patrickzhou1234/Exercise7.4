@@ -1,0 +1,65 @@
+This is original array: 
+Aadit
+Aarav
+Aashna
+Aditi
+Aditya
+Ajay
+Akul
+Allyson
+Angela
+Annika
+Elysse
+Harini
+Jaithra
+Jessie
+Julee
+Kai
+Manya
+Neev
+Patrick
+Raghav
+Ryan
+Sakthi
+Shamak
+Sheil
+
+Which student do you want to search for? (Type in 'no' to stop) Ajay
+Linear Search: 6, Binary Search: 2
+Which student do you want to search for? (Type in 'no' to stop) Neev
+Linear Search: 17, Binary Search: 5
+Which student do you want to search for? (Type in 'no' to stop) Ryan
+Linear Search: 19, Binary Search: 5
+Which student do you want to search for? (Type in 'no' to stop) Aashna
+Linear Search: 3, Binary Search: 4
+Which student do you want to search for? (Type in 'no' to stop) Patrick
+Linear Search: 16, Binary Search: 4
+Which student do you want to search for? (Type in 'no' to stop) no
+
+This is the original ArrayList after the remove operations:
+Aadit
+Aarav
+Aditi
+Aditya
+Akul
+Allyson
+Angela
+Annika
+Elysse
+Harini
+Jaithra
+Jessie
+Julee
+Kai
+Manya
+Raghav
+Sakthi
+Shamak
+Sheil
+
+This is the ArrayList of final exam takers:
+Ajay
+Neev
+Ryan
+Aashna
+Patrick
